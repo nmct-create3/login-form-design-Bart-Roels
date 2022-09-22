@@ -19,6 +19,21 @@
 \*------------------------------------*/
 
 :root {
+    --global-color-alpha-light: #4F95FF;
+    --global-color-alpha: #3385FF;
+    --global-color-alpha-dark: #2E77E6;
+
+    --global-baseline: 8px; 
+
+
+    --global-whitespace-xs: calc(var(--global-baseline) / 2);       /* = 4px */
+    --global-whitespace-sm: calc(var(--global-baseline) * 1);        /* = 8px */
+    --global-whitespace-md:  calc(var(--global-baseline) * 2);      /* = 16px */
+    --global-whitespace: calc(var(--global-baseline) * 3);          /* = 24px */
+    --global-whitespace-lg: calc(var(--global-baseline) * 4);       /* = 32px */                            /* = 32px */  
+    --global-whitespace-xl: calc(var(--global-whitespace) * 2);     /* = 48px */   
+
+
 
 }
 
@@ -37,7 +52,7 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: "Inter Web", Helvetica, arial, sans-serif;
+    font-family: "Inter Web", Helvetica;
     color: #20223a ;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -61,7 +76,7 @@ html {
 
 
 ::selection {
-    background: #3385FF;
+    background: var(--global-color-alpha);
     color: white;
     text-shadow: none;
 }
@@ -95,28 +110,28 @@ h3 {
 
 h1 {
     font-size: 36px;
-    line-height: 48px;
-    margin: 0 0 24px;
+    line-height: var(--global-whitespace-xl);
+    margin: 0 0 var(--global-whitespace);
 }
 
 h2 {
     font-size: 32px;
     line-height: 40px;
-    margin: 0 0 24px;
+    margin: 0 0  var(--global-whitespace);
 }
 
 h3 {
     font-size: 26px;
     line-height: 32px;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 h4,
 h5,
 h6 {
     font-size: 20px;
-    line-height: 24px;
-    margin: 0 0 24px;
+    line-height: var(--global-whitespace);
+    margin: 0 0 var(--global-whitespace);
 }
 
 p,
@@ -126,12 +141,12 @@ dl,
 table,
 address,
 figure {
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 ul,
 ol {
-    padding-left: 24px;
+    padding-left: var(--global-whitespace);
 }
 
 li ul,
@@ -142,8 +157,8 @@ li ol {
 blockquote {
     font-style: normal;
     font-size: 23px;
-    line-height: 32px;
-    margin: 0 0 24px;
+    line-height: var(--global-whitespace-lg);
+    margin: 0 0 var(--global-whitespace);
 }
 
 blockquote * {
@@ -154,7 +169,7 @@ blockquote * {
 figcaption {
     font-weight: 400;
     font-size: 12px;
-    line-height: 16px;
+    line-height: var(global-whitespace-md);
     margin-top: 8px;
 }
 
@@ -162,22 +177,27 @@ hr {
     border: 0;
     height: 1px;
     background: LightGrey;
-    margin: 0 0 24px;
+    margin: 0 0 var(--global-whitespace);
 }
 
 a {
-    color: #3385FF;
+    color: var(--global-color-alpha);
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: #3385FF;
+    color: var(--global-color-alpha);
 }
 
 a:hover,
 a:focus {
-    color: #2E77E6;
+    color: var(--global-color-alpha-light);
+}
+
+label, 
+input {
+    display: block;
 }
 
 /*------------------------------------*\
@@ -192,29 +212,31 @@ a:focus {
 
 .o-row {
     position: relative;
-    padding: 24px 24px 0;
+    padding: var(--global-whitespace) var(--global-whitespace) 0;
 }
 
 .o-row--login {
-    /* stuff here to align the card */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 /* size modifiers */
 
 .o-row--lg {
-    padding-top: 48px;
-    padding-bottom: 24px;
+    padding-top: var(--global-whitespace-xl);
+    padding-bottom: var(--global-whitespace);
 }
 
 .o-row--xl {
     padding-top: 72px;
-    padding-bottom: 48px;
+    padding-bottom: var(--global-whitespace-xl);
 }
 
 @media (min-width: 768px) {
     .o-row {
-        padding-left: 48px;
-        padding-right: 48px;
+        padding-left:var(--global-whitespace-xl);
+        padding-right: var(--global-whitespace-xl);
     }
 }
 
@@ -250,14 +272,14 @@ a:focus {
 }
 
 .o-section+.o-section {
-    padding-top: 24px;
+    padding-top: var(--global-whitespace);
 }
 
 @media (min-width: 768px) {
 
     .o-section--lg+.o-section--lg,
     .o-section--xl+.o-section--xl {
-        padding-top: 48px;
+        padding-top: var(--global-whitespace-xl);
     }
 }
 
@@ -309,7 +331,7 @@ a:focus {
 }
 
 .o-layout--gutter-lg>.o-layout__item {
-    padding: 0 24px;
+    padding: 0 var(--global-whitespace);
 }
 
 .o-layout--gutter-xl {
@@ -317,7 +339,7 @@ a:focus {
 }
 
 .o-layout--gutter-xl>.o-layout__item {
-    padding: 0 48px;
+    padding: 0 var(--global-whitespace-xl);
 }
 
 /* reverse horizontal row modifier */
@@ -444,11 +466,27 @@ a:focus {
 
 .c-logo {
     height: 24px;
+    display: flex;
+    justify-content: center;
 }
 
-.c-logo-symbol {
+.c-logo__svg {
     height: 100%;
     
+}
+
+/* Colors from logo arent in html but in css */
+
+.c-logo__path--1 {
+    fill: #20223A;
+}
+
+.c-logo__path--2 {
+    fill:  var(--global-color-alpha);
+}
+
+.c-logo__path--3 {
+    fill: #1B4186;
 }
 
 /*
@@ -463,15 +501,43 @@ a:focus {
     Everything form related here
 */
 
+.form-field--option {
+    display: flex;
+    gap: 8px;
+
+}
+
 /*
     Component: Input
     ---
     Class to put on all input="text" like form inputs
 */
 
-.c-input {}
 
-.c-input:focus {}
+.c-form-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e2e3e7;
+    border-radius: 3px;
+    font-family: inherit;
+    color:  inherit;
+    font-size: 16px;
+    line-height: var(--global-whitespace);
+    padding: 11px 15px;
+    outline: none;
+}
+
+.c-form-input:focus {
+    border-color:  var(--global-color-alpha);
+    box-shadow: h-offset v-offset blur spread color;
+    /* box-shadow: 0 0 0 3px #3385ff4d;  */
+    box-shadow: 0 0 0 3px rgba(51, 133, 255 , 0.3);
+}
+
 
 /*
     Component: Label
@@ -479,7 +545,13 @@ a:focus {
     Class to put on all form labels
 */
 
-.c-label {}
+.c-label {
+    font-size: 14px;
+    line-height: var(global-whitespace-md);
+    margin-bottom: 8px;
+    color: #606274;
+
+}
 
 /* If a input is focused within the form-field class change te color of the label */
 
@@ -491,15 +563,67 @@ a:focus {
     Class to put on form buttons or links
 */
 
-.c-button {}
+.c-button {
+    width: 100%;
+    font-size: 16px;
+    line-height:var(--global-whitespace);;
+    font-weight: 500;
+    padding: 11px 15px;
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle;
+    background-color:  var(--global-color-alpha);
+    border: 1px solid var(--global-color-alpha-dark);
+    color: #fff;
+    outline: none;
+    transition: all 0.1s ease;
+}
 
-.c-button:hover {}
+.c-button:hover {
+    background-color: var(--global-color-alpha-dark);
+}
 
-.c-button:focus {}
+.c-button:focus {
+    box-shadow: 0 0 0 3px rgba(51,133,255,.3);
+}
 
-.c-button:active {}
+.c-button:active {
+    background-color: var(--global-color-alpha-dark);
+    box-shadow: none;
+}
 
-.c-button--block {}
+
+/* 
+    Component: Card
+    ---
+    Component to put on cards
+*/
+
+.c-card {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.c-card__body {
+    padding: var(--global-whitespace);
+}
+
+.c-card__title {
+    font-size: 16px;
+    line-height: var(--global-whitespace);
+    font-weight: 700;
+    padding-top: var(--global-whitespace-xl);
+    text-align: center;
+}
+
+.c-card__footer {
+    padding: var(--global-whitespace);
+    border-top: 1px solid #e2e3e7;
+    text-align: center;
+}
+
+
 
 /*------------------------------------*\
 #UTILITIES
@@ -511,8 +635,16 @@ a:focus {
     Utility classes to put specific colors onto elements
 */
 
+.u-align-text-center {
+    text-align: center !important;
+}
+
+.u-font-size-small {
+    font-size: 14px !important;
+}
+
 .u-color-neutral-base {
-    color: Silver;
+    color: #8B8C9A !important;
 }
 
 .u-color-neutral-dark {
@@ -542,15 +674,15 @@ a:focus {
 }
 
 .u-mb-md {
-    margin-bottom: 16px !important;
+    margin-bottom:  var(global-whitespace-md) !important;
 }
 
 .u-mb-lg {
-    margin-bottom: 32px !important;
+    margin-bottom: var(--global-whitespace-lg) !important;
 }
 
 .u-mb-xl {
-    margin-bottom: 48px !important;
+    margin-bottom: var(--global-whitespace-xl) !important;
 }
 
 /*
@@ -577,21 +709,6 @@ a:focus {
 
 .u-max-width-none {
     max-width: none !important;
-}
-
-
-/*
-    Utilities: align
-    ---
-    Utility classes align text or components
-*/
-
-.u-align-text-center {
-    text-align: center;
-}
-
-.u-align-center {
-    margin: 0 auto;
 }
 
 /*
